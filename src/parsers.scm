@@ -1,4 +1,12 @@
-;; 
+;; -------------------------------- name parser
+(define (get-name inf name)
+	(define c (read-char inf))
+	(cond
+		((char-ci=? c #\) name))
+		((char-ci=? c #\') (string-append name (string c)))
+		((and (char-ci>=? c #\a) (char-ci<=? c #\z))
+			(get-name inf (string-append name (string c))))
+		(else name))) ;; wrong
 
 ;; -------------------------------- digit parsers
 ;; This is the digit parser that will grab sequential digits and stop at the
